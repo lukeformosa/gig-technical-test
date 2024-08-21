@@ -15,7 +15,7 @@ public class DatabaseInitializer {
         String dbUsername = System.getenv("DB_USERNAME");
         String dbPassword = System.getenv("DB_PASSWORD");
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/money_transfer_db", "postgres", "admin");
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5332/money_transfer_db", "postgres", "admin");
              Statement statement = connection.createStatement()) {
 
             String sql = new String(Files.readAllBytes(Paths.get("src/main/resources/data.sql")));

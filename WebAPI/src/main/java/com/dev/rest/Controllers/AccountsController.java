@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/accounts")
 public class AccountsController {
 
     private final AccountsService accountsService;
@@ -19,7 +19,7 @@ public class AccountsController {
         this.accountsService = itemService;
     }
 
-    @GetMapping("accounts")
+    @GetMapping("/")
     public List<AccountsTable> getAccounts() {
         return accountsService.getAccounts();
     }

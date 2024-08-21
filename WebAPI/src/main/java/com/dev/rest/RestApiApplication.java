@@ -3,9 +3,6 @@ package com.dev.rest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.management.InvalidApplicationException;
-import javax.management.OperationsException;
-
 @SpringBootApplication
 public class RestApiApplication {
 
