@@ -54,4 +54,4 @@ Curl request examples:
  v. Attempt to find the sender and receiver in the database.
  vi. Ensure that the sender has sufficient balance to carry out the transaction.
 
-To keep the solution simple, the Account table contains an id, first_name, last_name, and balance.
+- To keep the solution simple, the Account table contains an id, first_name, last_name, and balance.
