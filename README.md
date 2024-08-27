@@ -46,7 +46,7 @@ Curl request examples:
 ## Thoughts During Development
 
 - I thought about implementing a PATCH endpoint to handle the balance updates between accounts, but I opted against as it would be far more secure to handle the update logic in an unexposed manner.
-- Since this is a simple API, not much business logic was required, but I ensured that the /api/transfer endpoint was fully functional by implementing the following validations:
+- Since this is a simple API, not much business logic was required, but I ensured that the /api/transfer endpoint was fully functional by implementing the following validations: <br>
  i. Ensure transferAmount is greater than 0. <br>
  ii. Ensure senderId is not null. <br>
  iii. Ensure receiverId is not null. <br>
