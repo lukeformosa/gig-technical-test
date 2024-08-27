@@ -5,7 +5,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-      PGDATA: money_transfer_db
+      PGDATA: db:/data/postgres
+      POSTGRES_DB: money_transfer_db
     volumes:
       - db:/data/postgres
     ports:
