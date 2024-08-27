@@ -25,6 +25,10 @@ public class AccountsService {
 
     public TransferBalanceResponseModel transferBalance(TransferBalanceModel tbm) {
 
+        if(tbm.getTransferAmount() <= 0){
+            return new TransferBalanceResponseModel(false, "transferAmount needs to be greater than 0.");
+        }
+
         if (tbm.getSenderId() == null) {
             return new TransferBalanceResponseModel(false, "senderId is a required field.");
         }
