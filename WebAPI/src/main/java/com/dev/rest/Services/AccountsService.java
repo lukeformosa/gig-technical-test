@@ -2,12 +2,16 @@ package com.dev.rest.Services;
 
 import com.dev.rest.Models.Account;
 import com.dev.rest.Models.TransferBalanceModel;
+import com.dev.rest.Models.TransferBalanceResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dev.rest.Repositories.AccountsRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.round;
 
 @Service
 public class AccountsService {
@@ -23,23 +27,40 @@ public class AccountsService {
         return accountsRepository.findAll();
     }
 
-    public String transferBalance(TransferBalanceModel tbm){
+    public TransferBalanceResponseModel transferBalance(TransferBalanceModel tbm) {
+
+        if (tbm.getSenderId() == null) {
+            return new TransferBalanceResponseModel(false, "senderId is a required field.");
+        }
+
+        if (tbm.getReceiverId() == null) {
+            return new TransferBalanceResponseModel(false, "receiverId is a required field.");
+        }
+
+        if (tbm.getSenderId().equals(tbm.getReceiverId())) {
+            return new TransferBalanceResponseModel(false, "sender and receiver cannot be the same user.");
+        }
 
         Account sender = getAccount(tbm.getSenderId());
 
-        if(sender == null){
-            return "Operation failed, sender was not found.";
+        if (sender == null) {
+            return new TransferBalanceResponseModel(false, "sender not found.");
         }
 
         Account receiver = getAccount(tbm.getReceiverId());
 
-        if(receiver == null){
-            return "Operation failed, receiver was not found.";
+        if (receiver == null) {
+            return new TransferBalanceResponseModel(false, "receiver not found.");
         }
 
-        if(tbm.getTransferAmount() > sender.getBalance()){
-            return "Operation failed, transfer amount cannot be greater than account balance.";
+        if (tbm.getTransferAmount() > sender.getBalance()) {
+            return new TransferBalanceResponseModel(false, "transfer amount cannot be greater than account balance.");
         }
+
+        double senderOriginalBalance = sender.getBalance();
+        double senderNewBalance = sender.getBalance() - tbm.getTransferAmount();
+        double receiverOriginalBalance = receiver.getBalance();
+        double receiverNewBalance = receiver.getBalance() + tbm.getTransferAmount();
 
         //Deduct balance from sender
         accountsRepository.updateBalance(sender.getId(), sender.getBalance() - tbm.getTransferAmount());
@@ -47,10 +68,10 @@ public class AccountsService {
         //Add balance to receiver
         accountsRepository.updateBalance(receiver.getId(), receiver.getBalance() + tbm.getTransferAmount());
 
-        return "Operation successful, balance updated.";
+        return new TransferBalanceResponseModel(true, "Balance: " + String.format("%.2f", senderOriginalBalance) + " -> " + String.format("%.2f", senderNewBalance), "Balance: " + String.format("%.2f", receiverOriginalBalance) + " -> " + String.format("%.2f", receiverNewBalance));
     }
 
-    public Account getAccount(Integer id){
+    public Account getAccount(Integer id) {
         Optional<Account> fetchedAccount = accountsRepository.findById(id);
         return fetchedAccount.orElse(null);
     }

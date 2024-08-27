@@ -2,6 +2,7 @@ package com.dev.rest.Controllers;
 
 import com.dev.rest.Models.Account;
 import com.dev.rest.Models.TransferBalanceModel;
+import com.dev.rest.Models.TransferBalanceResponseModel;
 import com.dev.rest.Services.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class AccountsController {
     }
 
     @PostMapping("/transfer")
-    public String transferBalance(@RequestBody TransferBalanceModel tbm){
+    public TransferBalanceResponseModel transferBalance(@RequestBody TransferBalanceModel tbm){
         return accountsService.transferBalance(tbm);
     }
 }
