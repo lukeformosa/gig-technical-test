@@ -23,10 +23,6 @@ public class AccountsService {
         this.accountsRepository = accountsRepository;
     }
 
-    public List<Account> getAccounts() {
-        return accountsRepository.findAll();
-    }
-
     public TransferBalanceResponseModel transferBalance(TransferBalanceModel tbm) {
 
         if (tbm.getSenderId() == null) {
@@ -71,11 +67,10 @@ public class AccountsService {
         return new TransferBalanceResponseModel(true, "Balance: " + String.format("%.2f", senderOriginalBalance) + " -> " + String.format("%.2f", senderNewBalance), "Balance: " + String.format("%.2f", receiverOriginalBalance) + " -> " + String.format("%.2f", receiverNewBalance));
     }
 
-    public Account getAccount(Integer id) {
+    private Account getAccount(Integer id) {
         Optional<Account> fetchedAccount = accountsRepository.findById(id);
         return fetchedAccount.orElse(null);
     }
-
 
     //This method is created to make testing the API easier, this will provide the IDs in the database corresponding to user accounts.
     public List<Integer> getAllAccountIds() {

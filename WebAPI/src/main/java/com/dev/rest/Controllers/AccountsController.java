@@ -20,20 +20,10 @@ public class AccountsController {
         this.accountsService = itemService;
     }
 
-    @GetMapping()
-    public List<Account> getAccounts() {
-        return accountsService.getAccounts();
-    }
-
     //This method is created to make testing the API easier, this will provide the IDs in the database corresponding to user accounts.
     @GetMapping("/ids")
     public List<Integer> getIds(){
         return accountsService.getAllAccountIds();
-    }
-
-    @GetMapping("/account/{id}")
-    public Account getAccount(@PathVariable Integer id){
-        return accountsService.getAccount(id);
     }
 
     @PostMapping("/transfer")
