@@ -6,22 +6,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class AccountsTable {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generate ID values
-    private Long id;
+    private Integer id;
 
     private String firstName;
     private String lastName;
     private Double balance;
 
     // Getters and Setters
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

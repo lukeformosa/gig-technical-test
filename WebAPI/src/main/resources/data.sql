@@ -1,5 +1,5 @@
 -- Create the Accounts table if it doesn't exist
-CREATE TABLE IF NOT EXISTS Accounts_Table (
+CREATE TABLE IF NOT EXISTS Account (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
@@ -7,10 +7,10 @@ CREATE TABLE IF NOT EXISTS Accounts_Table (
 );
 
 -- Empty the Accounts table if it exists
-TRUNCATE TABLE Accounts_Table;
+TRUNCATE TABLE Account;
 
 -- Insert dummy data
-INSERT INTO Accounts_Table (first_name, last_name, balance)
+INSERT INTO Account (first_name, last_name, balance)
 VALUES
     ('Luke', 'Formosa', 198.56),
     ('Anthony', 'Mifsud', 1452.03),
