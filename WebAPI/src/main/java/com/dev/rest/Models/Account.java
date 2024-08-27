@@ -16,6 +16,17 @@ public class Account {
     private String lastName;
     private Double balance;
 
+    public Account() {
+
+    }
+
+    public Account(Integer id, String firstName, String lastName, Double balance) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.balance = balance;
+    }
+
     // Getters and Setters
     public Integer getId() {
         return id;
