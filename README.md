@@ -47,11 +47,11 @@ Curl request examples:
 
 - I thought about implementing a PATCH endpoint to handle the balance updates between accounts, but I opted against as it would be far more secure to handle the update logic in an unexposed manner.
 - Since this is a simple API, not much business logic was required, but I ensured that the /api/transfer endpoint was fully functional by implementing the following validations:
- i. Ensure transferAmount is greater than 0.
- ii. Ensure senderId is not null.
- iii. Ensure receiverId is not null.
- iv. Ensure that the senderId and receiverId are not the same.
- v. Attempt to find the sender and receiver in the database.
- vi. Ensure that the sender has sufficient balance to carry out the transaction.
+ i. Ensure transferAmount is greater than 0. <br>
+ ii. Ensure senderId is not null. <br>
+ iii. Ensure receiverId is not null. <br>
+ iv. Ensure that the senderId and receiverId are not the same. <br>
+ v. Attempt to find the sender and receiver in the database. <br>
+ vi. Ensure that the sender has sufficient balance to carry out the transaction. <br>
 
 - To keep the solution simple, the Account table contains an id, first_name, last_name, and balance.
