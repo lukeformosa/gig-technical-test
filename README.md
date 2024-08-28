@@ -5,7 +5,7 @@
 - I first analysed the problem and identified a possible solution.
 - I then researched for the ideal packages to use to create the RESTful API along with a connection to the DB (PSQL).
 - Started off by generating a template Maven project using [Spring Initializr](https://start.spring.io/).
-- From this project, I spent a few hours getting to grips with Java and understanding how the Spring framework interacts with the PSQL db and handles API calls.
+- From this project, I spent a few hours getting to grips with Java and understanding how the Spring framework interacts with the PSQL DB and handles API calls.
 - From this point onwards, I felt confident in implementing the required business logic to create the solution required.
 
 ## Architecture
@@ -14,15 +14,15 @@ I opted for an N-Tier Architecture, splitting the layers into the following:
 
 Controller -> Service -> Repository -> Database
 
-This structure separates logic and reduces dependability in the code, promoting maintainability and reuseability.
+This structure separates logic and reduces dependability in the code, promoting maintainability and reusability.
 
 ## Running Application
 
-In the Application directory in this repository, are two files, the JAR file representing the WebAPI and a Docker-Compose file repsenting the database.
+In the Application directory in this repository, are two files, the JAR file representing the WebAPI and a Docker-Compose file representing the database.
 
 Assuming Docker and Java are installed on the system, you may follow the below steps to run the application:
 
-1. Run the JAR file by opening a terminal within the same directory as the JAR file, and run "java -jar app.jar".
+1. Run the JAR file by opening a terminal within the same directory as the JAR file and run "java -jar app.jar".
 2. Within another terminal in the same directory, run "docker-compose up".
 
 ## Testing API
@@ -45,7 +45,7 @@ Curl request examples:
 
 ## Thoughts During Development
 
-- I thought about implementing a PATCH endpoint to handle the balance updates between accounts, but I opted against as it would be far more secure to handle the update logic in an unexposed manner.
+- I thought about implementing a PATCH endpoint to handle the balance updates between accounts, but I opted against it as it would be far more secure to handle the update logic in an unexposed manner.
 - Since this is a simple API, not much business logic was required, but I ensured that the /api/transfer endpoint was fully functional by implementing the following validations: <br>
  i. Ensure transferAmount is greater than 0. <br>
  ii. Ensure senderId is not null. <br>
@@ -57,12 +57,12 @@ Curl request examples:
 - To keep the solution simple, the Account table contains an id, first_name, last_name, and balance.
 
 ## Solution Approach
-- I first reseached the ideal way to implement an API in Java.
+- I first researched the ideal way to implement an API in Java.
 - Secondly, I analysed the problem in the test document and drafted a diagram of what the structure of the solution should look like (image in repository named Diagram.png).
 - Using the diagram, I started building the solution section by section.
-- To ensure that my desired solution will be viable, I first create a PSQL DB using a docker-compose file and attempted to communicate with it through a simple Spring Application.
+- To ensure that my desired solution will be viable, I first created a PSQL DB using a docker-compose file and attempted to communicate with it through a simple Spring Application.
 - Once that was done, I was confident in building the required layers to complete the test.
-- I created the Controller to handle the incoming requests and setup the GET and POST endpoints.
+- I created the Controller to handle the incoming requests and set up the GET and POST endpoints.
 - I then created the Service to contain the business logic required, to then be called by the corresponding endpoints.
 - Throughout this, I created an Account Model to represent the Account table in the database.
 - Using this Model, I was then able to create an AccountsRepository and extend the JPARepository, this simplified database queries by providing standard methods.
