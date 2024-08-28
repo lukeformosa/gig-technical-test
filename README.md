@@ -55,3 +55,18 @@ Curl request examples:
  vi. Ensure that the sender has sufficient balance to carry out the transaction. <br>
 
 - To keep the solution simple, the Account table contains an id, first_name, last_name, and balance.
+
+## Solution Approach
+- I first reseached the ideal way to implement an API in Java.
+- Secondly, I analysed the problem in the test document and drafted a diagram of what the structure of the solution should look like (image in repository named Diagram.png).
+- Using the diagram, I started building the solution section by section.
+- To ensure that my desired solution will be viable, I first create a PSQL DB using a docker-compose file and attempted to communicate with it through a simple Spring Application.
+- Once that was done, I was confident in building the required layers to complete the test.
+- I created the Controller to handle the incoming requests and setup the GET and POST endpoints.
+- I then created the Service to contain the business logic required, to then be called by the corresponding endpoints.
+- Throughout this, I created an Account Model to represent the Account table in the database.
+- Using this Model, I was then able to create an AccountsRepository and extend the JPARepository, this simplified database queries by providing standard methods.
+- After each layer was implemented, I conducted a series of tests to ensure that all connections are in place and all layers are communicating effectively.
+- Once I was confident in the solution, I used the Maven Assembly plugin to generate the JAR file required so that the API Application can run with a simple Java command.
+- Lastly, I tested the application by running the docker-compose file for the DB, and then the JAR file for the application.
+- Both the DB and the Application worked in coherence and could handle logical endpoint calls.
